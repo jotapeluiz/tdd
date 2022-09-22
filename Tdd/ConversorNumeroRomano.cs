@@ -23,13 +23,17 @@ namespace Tdd
 		public int ConververParaInteiro(string simbolo)
 		{
 			var algarismoRomano = simbolo.ToUpper();
+			var acumulador = 0;
 
-			if (SimbolosRomanos.ContainsKey(algarismoRomano))
+			foreach (var algarismo in algarismoRomano)
 			{
-				return SimbolosRomanos[algarismoRomano];
+				if (SimbolosRomanos.ContainsKey(algarismo.ToString()))
+				{
+					acumulador += SimbolosRomanos[algarismo.ToString()];
+				}
 			}
 
-			return 0;
+			return acumulador;
 		}
 	}
 }
