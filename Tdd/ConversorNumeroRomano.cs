@@ -6,7 +6,17 @@ namespace Tdd
 	{
 		public int ConververParaInteiro(string simbolo)
 		{
-			return 1;
+			if (simbolo == "I")
+			{
+				return 1;
+			}
+
+			if (simbolo == "V")
+			{
+				return 5;
+			}
+
+			return 0;
 		}
 	}
 }
