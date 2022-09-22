@@ -44,6 +44,7 @@ namespace ConversorTeste
 
 		[Theory]
 		[InlineData("")]
+		[InlineData("  ")]
 		[InlineData(null)]
 		public void TesteDeveDispararExcecaoComValoresNulosOuVazios(string simboloTestado)
 		{

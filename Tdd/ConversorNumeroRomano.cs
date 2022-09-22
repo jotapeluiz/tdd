@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Tdd
 {
@@ -22,6 +23,11 @@ namespace Tdd
 
 		public int ConververParaInteiro(string simbolo)
 		{
+			if (string.IsNullOrEmpty(simbolo?.Trim()))
+			{
+				throw new ArgumentException("Simbolo invalido");
+			}
+
 			var algarismoRomano = simbolo.ToUpper();
 			var acumulador = 0;
 			var ultimoVizinhoDaDireita = 0;
