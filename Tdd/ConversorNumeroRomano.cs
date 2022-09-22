@@ -6,7 +6,7 @@ namespace Tdd
 	{
 		public int ConververParaInteiro(string simbolo)
 		{
-			return 0;
+			return 1;
 		}
 	}
 }
