@@ -5,6 +5,13 @@ namespace ConversorTeste
 {
 	public class ConversorNumeroRomanoTeste
 	{
+		private ConversorNumeroRomano ConversorNumeroRomano;
+
+		public ConversorNumeroRomanoTeste()
+		{
+			ConversorNumeroRomano = new ConversorNumeroRomano();
+		}
+
 		[Theory]
 		[InlineData("I", 1)]
 		[InlineData("V", 5)]
@@ -15,8 +22,7 @@ namespace ConversorTeste
 		[InlineData("M", 1000)]
 		public void TesteDeveReconhecerUmSimbolo(string simboloTestado, int numeroEsperado)
 		{
-			var conversorNumeroRomano = new ConversorNumeroRomano();
-			var numeroConvertido = conversorNumeroRomano.ConververParaInteiro(simboloTestado);
+			var numeroConvertido = ConversorNumeroRomano.ConververParaInteiro(simboloTestado);
 
 			Assert.Equal(numeroEsperado, numeroConvertido);
 		}
@@ -24,8 +30,7 @@ namespace ConversorTeste
 		[Fact]
 		public void TesteDeveReconhecerDoisSimbolosIguais()
 		{
-			var conversorNumeroRomano = new ConversorNumeroRomano();
-			var numeroConvertido = conversorNumeroRomano.ConververParaInteiro("II");
+			var numeroConvertido = ConversorNumeroRomano.ConververParaInteiro("II");
 
 			Assert.Equal(2, numeroConvertido);
 		}
