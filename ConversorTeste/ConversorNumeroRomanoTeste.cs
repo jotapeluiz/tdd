@@ -1,3 +1,4 @@
+using System;
 using Tdd;
 using Xunit;
 
@@ -39,6 +40,17 @@ namespace ConversorTeste
 			var numeroConvertido = ConversorNumeroRomano.ConververParaInteiro(simboloTestado);
 
 			Assert.Equal(numeroEsperado, numeroConvertido);
+		}
+
+		[Theory]
+		[InlineData("")]
+		[InlineData(null)]
+		public void TesteDeveDispararExcecaoComValoresNulosOuVazios(string simboloTestado)
+		{
+			Action acao = () => ConversorNumeroRomano.ConververParaInteiro(simboloTestado);
+			var exception = Assert.Throws<ArgumentException>(acao);
+
+			Assert.Equal("Simbolo invalido", exception.Message);
 		}
 
 		[Fact(Skip = "Teste aguardando um impedimento qualquer")]
