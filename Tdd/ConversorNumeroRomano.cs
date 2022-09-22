@@ -22,9 +22,11 @@ namespace Tdd
 
 		public int ConververParaInteiro(string simbolo)
 		{
-			if (SimbolosRomanos.ContainsKey(simbolo))
+			var algarismoRomano = simbolo.ToUpper();
+
+			if (SimbolosRomanos.ContainsKey(algarismoRomano))
 			{
-				return SimbolosRomanos[simbolo];
+				return SimbolosRomanos[algarismoRomano];
 			}
 
 			return 0;
