@@ -14,5 +14,15 @@ namespace ConversorTeste
 
 			Assert.Equal(resultadoEsperado, simboloConvertido);
 		}
+
+		[Fact]
+		public void TesteDeveReconhecerSimboloV()
+		{
+			var conversorNumeroRomano = new ConversorNumeroRomano();
+			var resultadoEsperado = 5;
+			var simboloConvertido = conversorNumeroRomano.ConververParaInteiro("V");
+
+			Assert.Equal(resultadoEsperado, simboloConvertido);
+		}
 	}
 }
