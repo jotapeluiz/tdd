@@ -29,5 +29,16 @@ namespace ConversorTeste
 
 			Assert.Equal(2, numeroConvertido);
 		}
+
+		[Fact(Skip = "Teste aguardando um impedimento qualquer")]
+		public void TesteDevePularSuaExecucao()
+		{
+			/*
+				Este teste não será executado porém não significa
+				que está funcionando. Está apenas aguardando a sua
+				conclusão.
+			 */
+			Assert.True(false);
+		}
 	}
 }
