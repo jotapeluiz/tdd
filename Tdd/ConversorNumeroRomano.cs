@@ -24,12 +24,29 @@ namespace Tdd
 		{
 			var algarismoRomano = simbolo.ToUpper();
 			var acumulador = 0;
+			var ultimoVizinhoDaDireita = 0;
 
-			foreach (var algarismo in algarismoRomano)
+			for (int indice = algarismoRomano.Length - 1; indice >= 0; indice--)
 			{
-				if (SimbolosRomanos.ContainsKey(algarismo.ToString()))
+				// pega o inteiro referente ao símbolo atual
+				var atual = 0;
+				var algarismoCorrente = algarismoRomano[indice].ToString();
+
+				if (SimbolosRomanos.ContainsKey(algarismoCorrente))
 				{
-					acumulador += SimbolosRomanos[algarismo.ToString()];
+					atual = SimbolosRomanos[algarismoCorrente];
+
+					// se o da direita for menor, o multiplicamos por -1 para torná-lo negativo
+					var multiplicador = 1;
+
+					if (atual < ultimoVizinhoDaDireita)
+					{
+						multiplicador = -1;
+					}
+
+					acumulador += atual * multiplicador;
+					// atualiza o vizinho da direita
+					ultimoVizinhoDaDireita = atual;
 				}
 			}
 

@@ -30,6 +30,10 @@ namespace ConversorTeste
 		[Theory]
 		[InlineData("II", 2)]
 		[InlineData("IiI", 3)]
+		[InlineData("IX", 9)]
+		[InlineData("Iv", 4)]
+		[InlineData("xv", 15)]
+		[InlineData("XXII", 22)]
 		public void TesteDeveReconhecerDoisOuMaisSimbolos(string simboloTestado, int numeroEsperado)
 		{
 			var numeroConvertido = ConversorNumeroRomano.ConververParaInteiro(simboloTestado);
