@@ -38,6 +38,11 @@ namespace Tdd
 				var atual = 0;
 				var algarismoCorrente = algarismoRomano[indice].ToString();
 
+				if (int.TryParse(algarismoCorrente, out int numero))
+				{
+					return -1;
+				}
+
 				if (SimbolosRomanos.ContainsKey(algarismoCorrente))
 				{
 					atual = SimbolosRomanos[algarismoCorrente];
