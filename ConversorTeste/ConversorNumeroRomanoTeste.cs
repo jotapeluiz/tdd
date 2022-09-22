@@ -27,12 +27,14 @@ namespace ConversorTeste
 			Assert.Equal(numeroEsperado, numeroConvertido);
 		}
 
-		[Fact]
-		public void TesteDeveReconhecerDoisSimbolosIguais()
+		[Theory]
+		[InlineData("II", 2)]
+		[InlineData("IiI", 3)]
+		public void TesteDeveReconhecerDoisOuMaisSimbolos(string simboloTestado, int numeroEsperado)
 		{
-			var numeroConvertido = ConversorNumeroRomano.ConververParaInteiro("II");
+			var numeroConvertido = ConversorNumeroRomano.ConververParaInteiro(simboloTestado);
 
-			Assert.Equal(2, numeroConvertido);
+			Assert.Equal(numeroEsperado, numeroConvertido);
 		}
 
 		[Fact(Skip = "Teste aguardando um impedimento qualquer")]
