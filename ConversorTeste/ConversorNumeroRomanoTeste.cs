@@ -54,6 +54,20 @@ namespace ConversorTeste
 			Assert.Equal("Simbolo invalido", exception.Message);
 		}
 
+		[Theory]
+		[InlineData("15")]
+		[InlineData("-5")]
+		[InlineData("33")]
+		[InlineData("1v")]
+		[InlineData("X2")]
+		[InlineData("i2I")]
+		public void TesteDeveFalharComNumeros(string simboloTestado)
+		{
+			var numeroConvertido = ConversorNumeroRomano.ConververParaInteiro(simboloTestado);
+
+			Assert.Equal(-1, numeroConvertido);
+		}
+
 		[Fact(Skip = "Teste aguardando um impedimento qualquer")]
 		public void TesteDevePularSuaExecucao()
 		{
