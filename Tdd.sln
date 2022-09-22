@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1831
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tdd", "Tdd\Tdd.csproj", "{7563B4EE-7842-4663-9B93-A7DBFFFB2000}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conversor", "Tdd\Conversor.csproj", "{7563B4EE-7842-4663-9B93-A7DBFFFB2000}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConversorTeste", "ConversorTeste\ConversorTeste.csproj", "{A5B36094-4E2D-4701-9107-4EB48F5EEE74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7563B4EE-7842-4663-9B93-A7DBFFFB2000}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7563B4EE-7842-4663-9B93-A7DBFFFB2000}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7563B4EE-7842-4663-9B93-A7DBFFFB2000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B36094-4E2D-4701-9107-4EB48F5EEE74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B36094-4E2D-4701-9107-4EB48F5EEE74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B36094-4E2D-4701-9107-4EB48F5EEE74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B36094-4E2D-4701-9107-4EB48F5EEE74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
