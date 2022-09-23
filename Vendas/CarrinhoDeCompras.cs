@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Vendas
 {
@@ -13,17 +14,17 @@ namespace Vendas
 
 		public void AdicionarNoCarrinho(Produto produto)
 		{
-			
+			Produtos.Add(produto);
 		}
 
 		public bool VerificarCarrinhoVazio()
 		{
-			return true;
+			return Produtos.Count == 0;
 		}
 
 		public int CalcularValorCarrinho()
 		{
-			return 0;
+			return Produtos.Select(x => x.CalcularValorTotal()).Sum();
 		}
 	}
 }
