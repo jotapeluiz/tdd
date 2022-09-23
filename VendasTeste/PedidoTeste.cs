@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using System;
+using Moq;
 using Vendas;
 using Xunit;
 
@@ -59,6 +60,20 @@ namespace VendasTeste
 			pedido.SetarEnderecoEntrega("123456");
 
 			Assert.Equal(enderecoEntrega, pedido.EnderecoEntrega);
+		}
+
+		[Theory]
+		[InlineData("")]
+		[InlineData(null)]
+		public void TesteNaoDeveSetarEnderecoEntregaComCepInValido(string cepInvalido)
+		{
+			var mockServicoFrete = new Mock<IServicoFrete>();
+			var mockServicoCep = new Mock<IServicoCep>();
+
+			var pedido = new Pedido(mockServicoCep.Object, mockServicoFrete.Object);
+			mockServicoCep.Setup(x => x.PesquisarEndereco(cepInvalido)).Throws<InvalidOperationException>();
+
+			Assert.Throws<InvalidOperationException>(() => pedido.SetarEnderecoEntrega(cepInvalido));
 		}
 	}
 }

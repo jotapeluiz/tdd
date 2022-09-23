@@ -12,6 +12,11 @@ namespace Vendas
 		 */
 		public Endereco PesquisarEndereco(string cep)
 		{
+			if (string.IsNullOrEmpty(cep))
+			{
+				throw new InvalidOperationException();
+			}
+
 			return new Endereco
 			{
 				Cep = cep,
