@@ -14,6 +14,11 @@
 
 		public int CalcularValorTotal(string cepLoja, string cepCliente, CarrinhoDeCompras carrinhoDeCompras)
 		{
+			if (string.IsNullOrEmpty(cepLoja) || string.IsNullOrEmpty(cepCliente))
+			{
+				return 0;
+			}
+
 			var valorCarrinho = carrinhoDeCompras.CalcularValorCarrinho();
 			var valorFrete = ServicoFrete.CalcularFrete(cepLoja, cepCliente);
 

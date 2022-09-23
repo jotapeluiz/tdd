@@ -16,18 +16,19 @@ namespace VendasTeste
 			var mockServicoCep = new Mock<IServicoCep>();
 
 			var pedido = new Pedido(mockServicoCep.Object, mockServicoFrete.Object);
-			mockServicoFrete.Setup(x => x.CalcularFrete(It.IsAny<string>(), It.IsAny<string>())).Returns(100);
+			mockServicoFrete.Setup(x => x.CalcularFrete("1234", "4567")).Returns(100);
 
-			Assert.Equal(103, pedido.CalcularValorTotal(It.IsAny<string>(), It.IsAny<string>(), carrinhoDeCompras));
+			Assert.Equal(103, pedido.CalcularValorTotal("1234", "4567", carrinhoDeCompras));
 		}
 
-		[Fact]
-		public void TesteNaoDeveCalcularOValorDoPedido()
+		[Theory]
+		[InlineData("")]
+		[InlineData(null)]
+		public void TesteNaoDeveCalcularOValorDoPedido(string cepInvalido)
 		{
 			var carrinhoDeCompras = new CarrinhoDeCompras();
 			carrinhoDeCompras.AdicionarNoCarrinho(new Produto { Nome = "Lapis", ValorUnitario = 3 });
 
-			var cepInvalido = string.Empty;
 			var mockServicoFrete = new Mock<IServicoFrete>();
 			var mockServicoCep = new Mock<IServicoCep>();
 
