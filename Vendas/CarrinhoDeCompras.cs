@@ -12,6 +12,11 @@ namespace Vendas
 			Produtos = new List<Produto>();
 		}
 
+		public List<Produto> ObterListaProdutos()
+		{
+			return Produtos;
+		}
+
 		public void AdicionarNoCarrinho(Produto produto)
 		{
 			Produtos.Add(produto);

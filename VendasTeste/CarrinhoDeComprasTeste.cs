@@ -37,5 +37,22 @@ namespace VendasTeste
 
 			Assert.Equal(45, CarrinhoDeCompras.CalcularValorCarrinho());
 		}
+
+		[Fact]
+		public void TesteDeveAdicionarItensNoCarrinho()
+		{
+			var lapis = new Produto { Nome = "Lápis", ValorUnitario = 5 };
+			var prego = new Produto { Nome = "Prego", ValorUnitario = 3 };
+
+			CarrinhoDeCompras.AdicionarNoCarrinho(lapis);
+			CarrinhoDeCompras.AdicionarNoCarrinho(prego);
+
+			var produtosNoCarrinho = CarrinhoDeCompras.ObterListaProdutos();
+
+			Assert.Collection(produtosNoCarrinho, 
+				produto => produto.Equals(lapis),
+				produto => produto.Equals(prego)
+			);
+		}
 	}
 }
