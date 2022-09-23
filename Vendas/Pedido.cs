@@ -12,6 +12,11 @@
 			ServicoFrete = servicoFrete;
 		}
 
+		public void SetarEnderecoEntrega(string cepCliente)
+		{
+			EnderecoEntrega = new Endereco();
+		}
+
 		public int CalcularValorTotal(string cepLoja, string cepCliente, CarrinhoDeCompras carrinhoDeCompras)
 		{
 			if (string.IsNullOrEmpty(cepLoja) || string.IsNullOrEmpty(cepCliente))

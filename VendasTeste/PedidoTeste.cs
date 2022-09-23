@@ -37,5 +37,28 @@ namespace VendasTeste
 			pedido.CalcularValorTotal(cepInvalido, It.IsAny<string>(), carrinhoDeCompras);
 			mockServicoFrete.Verify(x => x.CalcularFrete(cepInvalido, It.IsAny<string>()), Times.Never());
 		}
+
+		[Fact]
+		public void TesteDeveSetarEnderecoEntregaComCepValido()
+		{
+			var mockServicoFrete = new Mock<IServicoFrete>();
+			var mockServicoCep = new Mock<IServicoCep>();
+
+			var enderecoEntrega = new Endereco
+			{
+				Cep = "123456",
+				Estado = "MG",
+				Cidade = "Pocos de Caldas",
+				Bairro = "Centro",
+				Rua = "Assis Figueredo"
+			};
+
+			var pedido = new Pedido(mockServicoCep.Object, mockServicoFrete.Object);
+			mockServicoCep.Setup(x => x.PesquisarEndereco("123456")).Returns(enderecoEntrega);
+
+			pedido.SetarEnderecoEntrega("123456");
+
+			Assert.Equal(enderecoEntrega, pedido.EnderecoEntrega);
+		}
 	}
 }
