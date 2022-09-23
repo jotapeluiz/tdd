@@ -14,7 +14,7 @@
 
 		public void SetarEnderecoEntrega(string cepCliente)
 		{
-			EnderecoEntrega = new Endereco();
+			EnderecoEntrega = ServicoCep.PesquisarEndereco(cepCliente);
 		}
 
 		public int CalcularValorTotal(string cepLoja, string cepCliente, CarrinhoDeCompras carrinhoDeCompras)
