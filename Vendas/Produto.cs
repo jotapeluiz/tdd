@@ -12,7 +12,7 @@ namespace Vendas
 
 		public int CalcularValorTotal()
 		{
-			return 0;
+			return ValorUnitario * Quantidade;
 		}
 	}
 }
