@@ -11,5 +11,10 @@
 			ServicoCep = servicoCep;
 			ServicoFrete = servicoFrete;
 		}
+
+		public int CalcularValorTotal(string cepLoja, string cepCliente, CarrinhoDeCompras carrinhoDeCompras)
+		{
+			return 0;
+		}
 	}
 }
