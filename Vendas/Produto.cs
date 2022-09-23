@@ -12,6 +12,11 @@ namespace Vendas
 
 		public int CalcularValorTotal()
 		{
+			if (ValorUnitario < 0 || Quantidade < 0)
+			{
+				throw new InvalidOperationException();
+			}
+
 			return ValorUnitario * Quantidade;
 		}
 	}
