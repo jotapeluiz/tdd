@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Vendas
+﻿namespace Vendas
 {
 	public class Pedido
 	{
-		private ServicoCep ServicoCep;
-		private ServicoFrete ServicoFrete;
+		private IServicoCep ServicoCep;
+		private IServicoFrete ServicoFrete;
 		public Endereco EnderecoEntrega;
 
-		public Pedido()
+		public Pedido(IServicoCep servicoCep, IServicoFrete servicoFrete)
 		{
-			ServicoCep = new ServicoCep();
-			ServicoFrete = new ServicoFrete();
+			ServicoCep = servicoCep;
+			ServicoFrete = servicoFrete;
 		}
 	}
 }

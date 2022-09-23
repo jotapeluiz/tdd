@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Vendas
 {
-	public class ServicoCep
+	public class ServicoCep	: IServicoCep
 	{
 		/*
 			Método que simula a consulta a uma API

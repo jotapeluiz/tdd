@@ -1,6 +1,6 @@
 ﻿namespace Vendas
 {
-	public class ServicoFrete
+	public class ServicoFrete : IServicoFrete
 	{
 		/*
 			Método que simula a consulta à um WebService
