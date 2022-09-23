@@ -7,19 +7,26 @@ namespace VendasTeste
 {
 	public class PedidoTeste
 	{
+		private Pedido Pedido;
+		private CarrinhoDeCompras CarrinhoDeCompras;
+		private Mock<IServicoCep> MockServicoCep;
+		private Mock<IServicoFrete> MockServicoFrete;
+
+		public PedidoTeste()
+		{
+			CarrinhoDeCompras = new CarrinhoDeCompras();
+			MockServicoCep = new Mock<IServicoCep>();
+			MockServicoFrete = new Mock<IServicoFrete>();
+			Pedido = new Pedido(MockServicoCep.Object, MockServicoFrete.Object);
+		}
+
 		[Fact]
 		public void TesteDeveCalcularOValorDoPedido()
 		{
-			var carrinhoDeCompras = new CarrinhoDeCompras();
-			carrinhoDeCompras.AdicionarNoCarrinho(new Produto { Nome = "Lapis", ValorUnitario = 3 });
+			CarrinhoDeCompras.AdicionarNoCarrinho(new Produto { Nome = "Lapis", ValorUnitario = 3 });
+			MockServicoFrete.Setup(x => x.CalcularFrete("1234", "4567")).Returns(100);
 
-			var mockServicoFrete = new Mock<IServicoFrete>();
-			var mockServicoCep = new Mock<IServicoCep>();
-
-			var pedido = new Pedido(mockServicoCep.Object, mockServicoFrete.Object);
-			mockServicoFrete.Setup(x => x.CalcularFrete("1234", "4567")).Returns(100);
-
-			Assert.Equal(103, pedido.CalcularValorTotal("1234", "4567", carrinhoDeCompras));
+			Assert.Equal(103, Pedido.CalcularValorTotal("1234", "4567", CarrinhoDeCompras));
 		}
 
 		[Theory]
@@ -27,24 +34,14 @@ namespace VendasTeste
 		[InlineData(null)]
 		public void TesteNaoDeveCalcularOValorDoPedido(string cepInvalido)
 		{
-			var carrinhoDeCompras = new CarrinhoDeCompras();
-			carrinhoDeCompras.AdicionarNoCarrinho(new Produto { Nome = "Lapis", ValorUnitario = 3 });
-
-			var mockServicoFrete = new Mock<IServicoFrete>();
-			var mockServicoCep = new Mock<IServicoCep>();
-
-			var pedido = new Pedido(mockServicoCep.Object, mockServicoFrete.Object);
-
-			pedido.CalcularValorTotal(cepInvalido, It.IsAny<string>(), carrinhoDeCompras);
-			mockServicoFrete.Verify(x => x.CalcularFrete(cepInvalido, It.IsAny<string>()), Times.Never());
+			CarrinhoDeCompras.AdicionarNoCarrinho(new Produto { Nome = "Lapis", ValorUnitario = 3 });
+			Pedido.CalcularValorTotal(cepInvalido, It.IsAny<string>(), CarrinhoDeCompras);
+			MockServicoFrete.Verify(x => x.CalcularFrete(cepInvalido, It.IsAny<string>()), Times.Never());
 		}
 
 		[Fact]
 		public void TesteDeveSetarEnderecoEntregaComCepValido()
 		{
-			var mockServicoFrete = new Mock<IServicoFrete>();
-			var mockServicoCep = new Mock<IServicoCep>();
-
 			var enderecoEntrega = new Endereco
 			{
 				Cep = "123456",
@@ -54,12 +51,10 @@ namespace VendasTeste
 				Rua = "Assis Figueredo"
 			};
 
-			var pedido = new Pedido(mockServicoCep.Object, mockServicoFrete.Object);
-			mockServicoCep.Setup(x => x.PesquisarEndereco("123456")).Returns(enderecoEntrega);
+			MockServicoCep.Setup(x => x.PesquisarEndereco("123456")).Returns(enderecoEntrega);
+			Pedido.SetarEnderecoEntrega("123456");
 
-			pedido.SetarEnderecoEntrega("123456");
-
-			Assert.Equal(enderecoEntrega, pedido.EnderecoEntrega);
+			Assert.Equal(enderecoEntrega, Pedido.EnderecoEntrega);
 		}
 
 		[Theory]
@@ -67,13 +62,9 @@ namespace VendasTeste
 		[InlineData(null)]
 		public void TesteNaoDeveSetarEnderecoEntregaComCepInValido(string cepInvalido)
 		{
-			var mockServicoFrete = new Mock<IServicoFrete>();
-			var mockServicoCep = new Mock<IServicoCep>();
+			MockServicoCep.Setup(x => x.PesquisarEndereco(cepInvalido)).Throws<InvalidOperationException>();
 
-			var pedido = new Pedido(mockServicoCep.Object, mockServicoFrete.Object);
-			mockServicoCep.Setup(x => x.PesquisarEndereco(cepInvalido)).Throws<InvalidOperationException>();
-
-			Assert.Throws<InvalidOperationException>(() => pedido.SetarEnderecoEntrega(cepInvalido));
+			Assert.Throws<InvalidOperationException>(() => Pedido.SetarEnderecoEntrega(cepInvalido));
 		}
 	}
 }
